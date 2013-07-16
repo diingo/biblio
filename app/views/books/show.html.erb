@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Picture:</b>
+  <%= @book.picture %>
+</p>
+
+<p>
   <b>Title:</b>
   <%= @book.title %>
 </p>
 
 <p>
-  <b>Isbn:</b>
-  <%= @book.isbn %>
-</p>
-
-<p>
-  <b>Picture:</b>
-  <%= @book.picture %>
+  <b>Author:</b>
+  <%= @book.author %>
 </p>
 
 <p>
@@ -21,10 +21,9 @@
 </p>
 
 <p>
-  <b>Author:</b>
-  <%= @book.author %>
+  <b>Isbn:</b>
+  <%= @book.isbn %>
 </p>
-
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
