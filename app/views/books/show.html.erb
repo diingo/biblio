@@ -2,7 +2,7 @@
 
 <p>
   <b>Picture:</b>
-  <%= @book.picture %>
+  <%= image_tag(@book.picture_url) if @book.picture.present? %>
 </p>
 
 <p>
