@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  # before_filter :authenticate_user!
+
   # GET /books
   # GET /books.json
   def index
@@ -41,6 +43,7 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(params[:book])
+    # @book= current_user.comments.create(params[:comment].merge(link_id: params[:link_id]))
 
     respond_to do |format|
       if @book.save
