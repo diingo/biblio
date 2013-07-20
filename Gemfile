@@ -8,6 +8,10 @@ gem 'devise'
 
 gem 'hirb'
 
+gem 'goodreads'
+
+gem 'sanitize'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -19,6 +23,7 @@ group :development do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'debugger'
 end
 
 

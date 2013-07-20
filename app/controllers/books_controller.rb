@@ -26,7 +26,11 @@ class BooksController < ApplicationController
   # GET /books/new
   # GET /books/new.json
   def new
-    @book = Book.new
+
+    # This puts "My fancy title" in the blank title field
+    # @book = Book.new :title => "My fancy title"
+
+    @book = Book.new 
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,9 +45,19 @@ class BooksController < ApplicationController
 
   # POST /books
   # POST /books.json
+
   def create
     @book = Book.new(params[:book])
-    # @book= current_user.comments.create(params[:comment].merge(link_id: params[:link_id]))
+    @book.user_id = current_user.id
+    # can alternatively use:
+    # @book = current_user.books.build(params[:book])
+
+    # I used the below code before I had added before_create to book model
+    # client = Goodreads.new
+    # book_info = client.book_by_isbn(params[:book][:isbn])
+    # @book.title = book_info.title if @book.title.blank?
+    
+
 
     respond_to do |format|
       if @book.save
@@ -60,9 +74,14 @@ class BooksController < ApplicationController
   # PUT /books/1.json
   def update
     @book = Book.find(params[:id])
-
+    @book.attributes = params[:book]
+    # a break point for debugging:
+    # debugger
+    client = Goodreads.new
+    book_info = client.book_by_isbn(params[:book][:isbn])
+    @book.title = book_info.title if @book.title.blank?
     respond_to do |format|
-      if @book.update_attributes(params[:book])
+      if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { head :no_content }
       else
