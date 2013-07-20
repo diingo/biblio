@@ -4,7 +4,11 @@
 
 <p>
   <b>Picture:</b>
-  <%= image_tag(@book.picture_url) if @book.picture.present? %>
+  <% if @book.goodreadscover.present? %>
+  <%= image_tag(@book.goodreadscover) %>
+  <% elsif @book.picture.present? %>
+  <%= image_tag @book.picture_url %>
+  <% end %>
 </p>
 
 <p>

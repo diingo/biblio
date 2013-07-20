@@ -1,6 +1,7 @@
 class Book < ActiveRecord::Base
-  attr_accessible :author, :isbn, :picture, :publisher, :title, :user_id
+  attr_accessible :author, :isbn, :picture, :publisher, :title, :user_id, :goodreadscover
 
+  # :picture is user uploaded picture of book cover, :goodreadscover is goodreads picture of book cover
   mount_uploader :picture, PictureUploader
 
   belongs_to :user
@@ -36,7 +37,9 @@ class Book < ActiveRecord::Base
       end
       # something interesting to try later when add description column to books table. Uses the sanitize gem
       # self.description = Sanitize.clean(book.description) if self.description.blank?
-      self.picture = book.image_url
+
+      self.goodreadscover= book.image_url
+         
     end
   end
 end
