@@ -13,7 +13,13 @@
 
 <% @books.each do |book| %>
   <tr>
-    <td width="50px"><%= image_tag(book.picture_url) if book.picture.present? %></td>
+    <td width="50px">
+        <% if book.picture.present? %>
+        <%= image_tag(book.picture_url)%>
+        <% elsif book.goodreadscover.present? %>
+        <%= image_tag book.goodreadscover %>
+        <% end %>
+    </td>
     <td><%= book.title %></td>
     <td><%= book.author %></td>
     <td><%= book.publisher %></td>
