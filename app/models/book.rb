@@ -35,6 +35,10 @@ class Book < ActiveRecord::Base
           self.author = book.authors.author.name
         end
       end
+
+      if self.publisher.blank?
+        self.publisher = book.publisher
+      end
       # something interesting to try later when add description column to books table. Uses the sanitize gem
       # self.description = Sanitize.clean(book.description) if self.description.blank?
 

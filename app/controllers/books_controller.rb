@@ -4,8 +4,16 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    # @books = Book.all
     
+    if current_user.present?
+      # why set @user to current_user.id instead of just sticking current_user.id into Book.where
+      @user = current_user.id
+      @books = Book.where(user_id: @user)
+    else
+      @books = []
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
